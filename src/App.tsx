@@ -1,20 +1,8 @@
 import { useMemo, useState } from 'react'
 
-type Price = {
-  title: string
-  subtitle: string
-  price: string
-  perks: string[]
-  highlight?: boolean
-}
-
 type Faq = {
   q: string
   a: string
-}
-
-function cx(...classes: Array<string | false | null | undefined>) {
-  return classes.filter(Boolean).join(' ')
 }
 
 function Badge({ children }: { children: React.ReactNode }) {
@@ -53,31 +41,6 @@ function SectionTitle({
 
 export default function App() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
-
-  const prices: Price[] = useMemo(
-    () => [
-      {
-        title: 'Standard',
-        subtitle: 'Ideal pentru ritm constant',
-        price: '120 lei / ședință',
-        perks: ['Ședință 90 min', 'Trasee + poligon', 'Feedback după fiecare lecție'],
-      },
-      {
-        title: 'Intensiv',
-        subtitle: 'Pentru obiectiv rapid',
-        price: '650 lei / pachet (6)',
-        perks: ['6 ședințe x 90 min', 'Plan personalizat', 'Prioritate la programări'],
-        highlight: true,
-      },
-      {
-        title: 'Reîmprospătare',
-        subtitle: 'După pauză / anxietate',
-        price: '150 lei / ședință',
-        perks: ['Ședință 90 min', 'Control + încredere', 'Conducere defensivă'],
-      },
-    ],
-    [],
-  )
 
   const faqs: Faq[] = useMemo(
     () => [
@@ -133,12 +96,6 @@ export default function App() {
                 >
                   Programează o ședință
                   <span className="transition-transform group-hover:translate-x-1">→</span>
-                </a>
-                <a
-                  href="#tarife"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-drive-blue/40 bg-drive-blue/10 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm transition hover:bg-drive-blue/20 hover:border-drive-blue/60"
-                >
-                  Vezi tarifele
                 </a>
               </div>
 
@@ -627,67 +584,6 @@ export default function App() {
             ))}
           </div>
         </section>
-
-        {/* Pricing - improved */}
-        <section id="tarife" className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-          <SectionTitle
-            kicker="Tarife"
-            title="Transparent și flexibil"
-            subtitle="Fără taxe ascunse. Alegi ritmul care ți se potrivește cel mai bine."
-          />
-
-          <div className="grid gap-6 lg:grid-cols-3">
-            {prices.map((p) => (
-              <div
-                key={p.title}
-                className={cx(
-                  'relative overflow-hidden rounded-2xl border p-8 backdrop-blur-sm transition hover:scale-105',
-                  p.highlight
-                    ? 'border-drive-orange/40 bg-gradient-to-br from-drive-orange/10 to-drive-blue/10 shadow-xl shadow-drive-orange/20'
-                    : 'border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02]',
-                )}
-              >
-                {p.highlight && (
-                  <div className="absolute right-4 top-4">
-                    <span className="inline-flex items-center rounded-full bg-gradient-to-r from-drive-orange to-orange-500 px-3 py-1 text-xs font-bold text-white shadow-lg">
-                      ⭐ RECOMANDAT
-                    </span>
-                  </div>
-                )}
-                
-                <div className="text-center">
-                  <div className="text-base font-bold text-white">{p.title}</div>
-                  <div className="mt-1 text-sm text-white/60">{p.subtitle}</div>
-                  <div className="mt-6 text-3xl font-bold text-white">
-                    {p.price}
-                  </div>
-                  
-                  <ul className="mt-8 space-y-3 text-left">
-                    {p.perks.map((x) => (
-                      <li key={x} className="flex items-start gap-3 text-sm text-white/80">
-                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-drive-orange to-orange-500 text-xs">✓</span>
-                        <span>{x}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  <a
-                    href="#contact"
-                    className={cx(
-                      'mt-8 inline-flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold transition',
-                      p.highlight
-                        ? 'bg-gradient-to-r from-drive-orange to-orange-500 text-white shadow-lg shadow-drive-orange/30 hover:shadow-xl hover:shadow-drive-orange/50'
-                        : 'border-2 border-drive-blue/40 bg-drive-blue/10 text-white hover:bg-drive-blue/20 hover:border-drive-blue/60',
-                    )}
-                  >
-                    Alege planul →
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
         {/* FAQ - simplified */}
         <section id="faq" className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
           <SectionTitle

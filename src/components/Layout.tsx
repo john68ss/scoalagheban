@@ -68,7 +68,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             {[
               ['Acasă', '/#acasa'],
               ['Servicii', '/#servicii'],
-              ['Tarife', '/#tarife'],
               ['FAQ', '/#faq'],
               ['Dosar', '/dosar'],
               ['Învățare', '/invatare'],
@@ -123,7 +122,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               {[
                 ['Acasă', '/#acasa'],
                 ['Servicii', '/#servicii'],
-                ['Tarife', '/#tarife'],
                 ['FAQ', '/#faq'],
                 ['Dosar', '/dosar'],
                 ['Învățare', '/invatare'],
@@ -169,9 +167,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <div className="flex flex-wrap items-center gap-3 sm:gap-6 text-center sm:text-left">
                 <a className="text-xs sm:text-sm hover:text-drive-orange transition-colors active:text-drive-orange" href="/#servicii">
                   Servicii
-                </a>
-                <a className="text-xs sm:text-sm hover:text-drive-orange transition-colors active:text-drive-orange" href="/#tarife">
-                  Tarife
                 </a>
                 <a className="text-xs sm:text-sm hover:text-drive-orange transition-colors active:text-drive-orange" href="/dosar">
                   Dosar
