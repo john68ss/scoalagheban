@@ -1,0 +1,726 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --color-drive-orange: #FF6B35;
+  --color-drive-blue: #1E88E5;
+  --color-drive-green: #43A047;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  margin: 0;
+  background: #0F1419;
+  color: rgba(255, 255, 255, 0.92);
+  overflow-x: hidden;
+}
+
+/* ==================== DRIVING SCHOOL BACKGROUNDS ==================== */
+
+.bg-aurora {
+  background: radial-gradient(900px 600px at 30% 20%, rgba(255,107,53,.20), transparent 60%),
+              radial-gradient(800px 500px at 70% 10%, rgba(30,136,229,.20), transparent 60%),
+              radial-gradient(700px 450px at 50% 60%, rgba(67,160,71,.08), transparent 60%);
+}
+
+.bg-grid {
+  background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+}
+
+/* Road markings - dashed lines like on road */
+.bg-road-lines {
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 50px,
+    rgba(255,255,255,.08) 50px,
+    rgba(255,255,255,.08) 70px,
+    transparent 70px,
+    transparent 120px
+  );
+  background-size: 120px 4px;
+  background-position: center;
+}
+
+/* Traffic sign shapes */
+.traffic-sign-octagon {
+  width: 60px;
+  height: 60px;
+  background: #E53935;
+  position: relative;
+  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.traffic-sign-triangle {
+  width: 0;
+  height: 0;
+  border-left: 35px solid transparent;
+  border-right: 35px solid transparent;
+  border-bottom: 60px solid #FFB300;
+  position: relative;
+}
+
+.traffic-sign-circle {
+  width: 60px;
+  height: 60px;
+  background: white;
+  border: 4px solid #E53935;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #E53935;
+  font-size: 20px;
+}
+
+/* Road stripe decoration */
+.road-stripe {
+  height: 8px;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255,255,255,.15) 0px,
+    rgba(255,255,255,.15) 40px,
+    transparent 40px,
+    transparent 80px
+  );
+  margin: 20px 0;
+}
+
+/* ==================== SCROLLBAR ==================== */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15,20,25,0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, rgba(255,107,53,.4), rgba(30,136,229,.4));
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, rgba(255,107,53,.6), rgba(30,136,229,.6));
+}
+
+/* ==================== SELECTION ==================== */
+
+::selection {
+  background: rgba(255,107,53,.3);
+  color: rgba(255,255,255,.95);
+}
+
+/* ==================== FOCUS ==================== */
+
+*:focus-visible {
+  outline: 2px solid rgba(255,107,53,.5);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ==================== INTERACTIONS ==================== */
+
+button:active, a:active {
+  transform: scale(0.98);
+}
+
+/* ==================== REDUCE MOTION ==================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ====================================
+   MOBILE OPTIMIZATIONS
+   ==================================== */
+
+/* Optimize touch targets for mobile */
+@media (max-width: 768px) {
+  /* Ensure all clickable elements are at least 44x44px (Apple HIG recommendation) */
+  a, button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Reduce excessive spacing on mobile */
+  section {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+  
+  /* Optimize font sizes for mobile readability */
+  h1 {
+    font-size: 1.875rem !important; /* 30px */
+    line-height: 1.2;
+  }
+  
+  h2 {
+    font-size: 1.5rem !important; /* 24px */
+    line-height: 1.3;
+  }
+  
+  h3 {
+    font-size: 1.125rem !important; /* 18px */
+    line-height: 1.4;
+  }
+  
+  p {
+    font-size: 0.9375rem; /* 15px */
+    line-height: 1.6;
+  }
+  
+  /* Optimize padding for cards on mobile */
+  .rounded-2xl, .rounded-3xl {
+    padding: 1rem !important;
+  }
+  
+  /* Reduce gap between grid items */
+  .grid {
+    gap: 0.75rem !important;
+  }
+  
+  /* Optimize badges for mobile */
+  .inline-flex.items-center.gap-1\.5 {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+  }
+  
+  /* Optimize images for mobile */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Prevent horizontal scroll */
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Optimize navbar for mobile */
+  header {
+    padding: 0.75rem 1rem;
+  }
+  
+  /* Optimize footer for mobile */
+  footer {
+    padding: 1.5rem 1rem;
+  }
+  
+  footer .flex {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  /* Make buttons full width on very small screens */
+  @media (max-width: 400px) {
+    .sm\:flex-row {
+      width: 100%;
+    }
+    
+    a[class*="rounded-xl"] {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}
+
+/* Optimize for small screens (phones in portrait) */
+@media (max-width: 640px) {
+  /* Reduce hero section padding */
+  #acasa section:first-child {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  /* Stack elements vertically */
+  .lg\:grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Optimize stats cards */
+  .grid-cols-3 > div {
+    padding: 0.75rem 0.5rem;
+  }
+  
+  .grid-cols-3 > div > div:first-child {
+    font-size: 1.25rem;
+  }
+  
+  .grid-cols-3 > div > div:last-child {
+    font-size: 0.625rem;
+    line-height: 1.2;
+  }
+  
+  /* Optimize pricing cards */
+  .md\:grid-cols-3 {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  /* Optimize FAQ section */
+  .space-y-4 {
+    gap: 0.75rem;
+  }
+  
+  /* Reduce border radius on mobile for more space */
+  .rounded-3xl {
+    border-radius: 1rem;
+  }
+  
+  .rounded-2xl {
+    border-radius: 0.75rem;
+  }
+  
+  /* Optimize form inputs */
+  input, textarea, select {
+    font-size: 16px !important; /* Prevents zoom on iOS */
+    padding: 0.75rem 1rem;
+  }
+  
+  /* Optimize contact section */
+  #contact .grid {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Optimize manual vs automat section */
+  .lg\:grid-cols-2 > div {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Optimize for medium screens (tablets) */
+@media (min-width: 641px) and (max-width: 1024px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+  
+  section {
+    padding: 4rem 1.5rem;
+  }
+  
+  .max-w-6xl {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* Improve touch interactions */
+@media (hover: none) and (pointer: coarse) {
+  /* Remove hover effects on touch devices, use active instead */
+  .hover\:scale-105:hover {
+    transform: none;
+  }
+  
+  .hover\:scale-105:active {
+    transform: scale(0.95);
+  }
+  
+  .hover\:shadow-2xl:hover {
+    box-shadow: none;
+  }
+  
+  .hover\:shadow-2xl:active {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+  
+  /* Improve button feedback on touch */
+  button:active,
+  a:active {
+    opacity: 0.8;
+    transform: scale(0.95);
+    transition: all 0.1s ease;
+  }
+}
+
+/* Optimize for very small screens (320px - old iPhones) */
+@media (max-width: 375px) {
+  h1 {
+    font-size: 1.5rem !important;
+  }
+  
+  h2 {
+    font-size: 1.25rem !important;
+  }
+  
+  h3 {
+    font-size: 1rem !important;
+  }
+  
+  p {
+    font-size: 0.875rem;
+  }
+  
+  .px-4 {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  .grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+  
+  .grid-cols-3 > div {
+    padding: 0.5rem 0.25rem;
+  }
+  
+  /* Reduce badge size */
+  .inline-flex.items-center.gap-1\.5 {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.625rem;
+  }
+}
+
+/* Performance optimizations for mobile */
+@media (max-width: 768px) {
+  /* Reduce blur effects on mobile for better performance */
+  .backdrop-blur-sm,
+  .backdrop-blur-md {
+    backdrop-filter: blur(4px);
+  }
+  
+  /* Reduce shadow complexity */
+  .shadow-2xl {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  }
+  
+  .shadow-xl {
+    box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.25);
+  }
+  
+  /* Optimize animations */
+  .animate-pulse,
+  .animate-floaty {
+    animation-duration: 3s;
+  }
+  
+  /* Hide decorative elements on very small screens */
+  @media (max-width: 480px) {
+    .absolute.opacity-20,
+    .absolute.opacity-15 {
+      display: none;
+    }
+  }
+}
+
+/* Landscape mobile optimization */
+@media (max-height: 500px) and (orientation: landscape) {
+  section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  h1 {
+    font-size: 1.75rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  .pt-20,
+  .pb-20,
+  .py-20 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
+
+/* iOS specific fixes */
+@supports (-webkit-touch-callout: none) {
+  /* Prevent text size adjustment */
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  
+  /* Fix for iOS input zoom */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea {
+    font-size: 16px;
+  }
+  
+  /* Smooth scrolling on iOS */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Dark mode optimizations for mobile (better battery life on OLED) */
+@media (max-width: 768px) and (prefers-color-scheme: dark) {
+  .bg-neo-bg {
+    background-color: #000000;
+  }
+  
+  .bg-gradient-to-b {
+    background: linear-gradient(to bottom, #000000, #0a0f1e);
+  }
+}
+
+/* Accessibility improvements for mobile */
+@media (max-width: 768px) {
+  /* Larger tap targets for better accessibility */
+  a, button {
+    padding: 0.75rem 1rem;
+  }
+  
+  /* Better contrast for small text */
+  .text-white\/60,
+  .text-white\/70 {
+    color: rgba(255, 255, 255, 0.85);
+  }
+  
+  /* Ensure sufficient spacing between interactive elements */
+  nav a + a,
+  .flex > a + a,
+  .flex > button + button {
+    margin-left: 0.5rem;
+  }
+}
+
+/* ====================================
+   PAGES SPECIFIC MOBILE OPTIMIZATIONS
+   ==================================== */
+
+/* Dosar & Invatare pages optimization */
+@media (max-width: 768px) {
+  /* Hero sections */
+  section h1 {
+    font-size: 1.875rem !important;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  
+  section h2 {
+    font-size: 1.5rem !important;
+    line-height: 1.3;
+  }
+  
+  section h3 {
+    font-size: 1.125rem !important;
+    line-height: 1.4;
+  }
+  
+  /* Reduce section padding */
+  section {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+  
+  section.mx-auto {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Info cards grid */
+  .md\:grid-cols-3 {
+    grid-template-columns: 1fr;
+    gap: 1rem !important;
+  }
+  
+  /* Document cards */
+  .md\:grid-cols-3 > div,
+  .grid > div {
+    padding: 1rem !important;
+    border-radius: 1rem !important;
+  }
+  
+  /* Icons in cards */
+  .text-4xl {
+    font-size: 2rem !important;
+  }
+  
+  .text-3xl {
+    font-size: 1.5rem !important;
+  }
+  
+  .text-2xl {
+    font-size: 1.25rem !important;
+  }
+  
+  /* Document detail cards */
+  .flex.items-start.gap-6 {
+    gap: 1rem !important;
+    flex-direction: column;
+  }
+  
+  .flex.h-16.w-16 {
+    height: 3rem !important;
+    width: 3rem !important;
+    font-size: 1.5rem !important;
+  }
+  
+  /* Badge tags */
+  .inline-flex.items-center.gap-1\.5.rounded-full {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.625rem;
+  }
+  
+  /* Lists */
+  ul {
+    margin-left: 1rem;
+  }
+  
+  ul li {
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+  }
+  
+  /* Timeline in Dosar page */
+  .relative.flex.gap-6 {
+    gap: 1rem !important;
+  }
+  
+  .hidden.md\:flex {
+    display: none !important;
+  }
+  
+  /* Cost table */
+  .space-y-4 > div {
+    padding: 0.75rem !important;
+    font-size: 0.875rem !important;
+  }
+  
+  /* Links section */
+  .md\:grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+  
+  /* CTA sections */
+  .rounded-3xl {
+    padding: 1.5rem !important;
+    border-radius: 1rem !important;
+  }
+  
+  /* Text in CTA */
+  .rounded-3xl h2 {
+    font-size: 1.5rem !important;
+    margin-bottom: 1rem;
+  }
+  
+  .rounded-3xl p {
+    font-size: 0.9375rem !important;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Button groups */
+  .flex.flex-col.sm\:flex-row {
+    gap: 0.75rem;
+  }
+  
+  .flex.flex-col.sm\:flex-row a,
+  .flex.flex-col.sm\:flex-row button {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    font-size: 0.9375rem;
+  }
+  
+  /* Warning/tip boxes */
+  .rounded-xl.border.p-4 {
+    padding: 0.75rem !important;
+    font-size: 0.8125rem !important;
+  }
+  
+  /* Kicker/badge text */
+  .uppercase.tracking-wide {
+    font-size: 0.625rem !important;
+    padding: 0.5rem 1rem;
+  }
+  
+  /* Margin bottom adjustments */
+  .mb-16 {
+    margin-bottom: 2rem !important;
+  }
+  
+  .mb-12 {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .mb-8 {
+    margin-bottom: 1rem !important;
+  }
+  
+  /* Padding adjustments for cards */
+  .p-8 {
+    padding: 1rem !important;
+  }
+  
+  .p-6 {
+    padding: 0.875rem !important;
+  }
+  
+  .p-5 {
+    padding: 0.75rem !important;
+  }
+  
+  .p-4 {
+    padding: 0.625rem !important;
+  }
+}
+
+/* Very small screens optimization for Dosar/Invatare */
+@media (max-width: 375px) {
+  section h1 {
+    font-size: 1.5rem !important;
+  }
+  
+  section h2 {
+    font-size: 1.25rem !important;
+  }
+  
+  section h3 {
+    font-size: 1rem !important;
+  }
+  
+  .flex.items-start.gap-6,
+  .flex.items-start.gap-4,
+  .flex.items-start.gap-3 {
+    gap: 0.75rem !important;
+  }
+  
+  .flex.h-16.w-16,
+  .flex.h-12.w-12 {
+    height: 2.5rem !important;
+    width: 2.5rem !important;
+    font-size: 1.25rem !important;
+  }
+  
+  p {
+    font-size: 0.875rem !important;
+  }
+  
+  .text-sm {
+    font-size: 0.8125rem !important;
+  }
+  
+  .text-xs {
+    font-size: 0.6875rem !important;
+  }
+}
